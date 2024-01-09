@@ -5,8 +5,7 @@ set -o pipefail
 SCRIPT_PATH="$(dirname -- "$(readlink -f "${BASH_SOURCE}")")"
 IFS=$' \t\r\n'
 
-TRAVIS_TOKEN=""
-ENV_NEW_VALUE=""
+: ${TRAVIS_TOKEN?Please set it}
 
 : "${TRAVIS_API:=https://travis-ci.com//api/repo}"
 
@@ -19,16 +18,6 @@ DATA_LIST_FILE="travis-env-var.json"
 DATA_LIST="${SCRIPT_PATH}/${DATA_LIST_FILE}"
 
 CURL_HEADERS=(-H "Content-Type: application/json" -H "Travis-API-Version: 3" -H "Authorization: token ${TRAVIS_TOKEN}")
-
-##### To create new ENV var in travis
-# 
-# It will get list of vars to create from 
-# DATA_LIST [file: travis-env-var.json] and 
-
-# repo list from 
-#REPO_LIST [file: git-repo.list]
-#
-# Then loop them 
 
 env_create() {
   while read -r REPO
@@ -43,9 +32,9 @@ env_create() {
 }
 
 env_update() {
-  ENV_VAR_NAME="<env name>"
-  ENV_VAR_VALUE="${ENV_NEW_VALUE}"
-  IS_PUBLIC="false"
+  : ${ENV_VAR_NAME?Please set it}
+  : ${ENV_VAR_VALUE?Please set it}
+  : ${IS_PUBLIC:="false"}
 
   DATA="{\"env_var.value\": \"${ENV_VAR_VALUE}\", \"env_var.public\": ${IS_PUBLIC}}"
 
