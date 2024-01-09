@@ -1,0 +1,4 @@
+{"env_var.name": "GITHUB_TOKEN", "env_var.value": "ghp_us9eH", "env_var.public": false}
+{"env_var.name": "GITHUB_USER", "env_var.value": "git-user", "env_var.public": true}
+{"env_var.name": "DOCKER_USER", "env_var.value": "docker0user", "env_var.public": true}
+{"env_var.name": "DOCKER_PASSWORD", "env_var.value": "dckr_rdt_71Lzg", "env_var.public": false}
